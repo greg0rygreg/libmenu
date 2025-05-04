@@ -43,6 +43,8 @@ int main() {
                         }
                     }
                 }
+                clear();
+                break;
             }
             case 2: {
                 clear();
@@ -75,6 +77,8 @@ int main() {
                         }
                     }
                 }
+                clear();
+                break;
             }
             case 3: {
                 clear();
