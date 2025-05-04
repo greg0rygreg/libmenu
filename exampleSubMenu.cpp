@@ -83,9 +83,7 @@ int main() {
             case 3: {
                 clear();
                 std::cout << menu.getFormattedVersion() << "\n"
-                << "licensed under MIT license\n"
-                << "this project comes from greg0rygreg/test-repos on github,\n"
-                << "because it is not big enough to have its own repo\n";
+                << "licensed under MIT license\n";
                 sep();
                 break;
             }
