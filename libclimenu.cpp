@@ -15,7 +15,7 @@ namespace libclimenu {
     }
     void Menu::printAndGetInput(int &optionInt, bool printName) {
         if (printName) {
-            std::cout << this->name << " v" << this->version << "\n";
+            std::cout << this->getFormattedVersion() << "\n";
         }
         for (int i = 0; i < this->options.size(); i++) {
             std::cout << "(" << i+1 << ") " << this->options[i] << "\n";
@@ -25,7 +25,7 @@ namespace libclimenu {
         std::cin >> optionInt;
     }
     std::string Menu::getFormattedVersion() {
-        return this->name + " v" + this->version; // python moment
+        return this->name + " v. " + this->version; // python moment
     }
     void clear() {
         std::cout << "\x1b[2J\x1b[H";
