@@ -102,3 +102,5 @@ int main() {
     }
     return 0;
 }
+// linux: g++ example.cpp -o example ./libclimenu.so
+// windows: g++ example.cpp -o example.exe ./libclimenu.dll
