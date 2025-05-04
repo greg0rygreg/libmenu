@@ -2,7 +2,7 @@
 #include "libclimenu.hpp"
 using namespace libclimenu;
 int main() {
-    Menu menu("libclimenu submenu example", "1.0", {"submenu 1", "submenu 2", "info"}, "exit");
+    Menu menu("libclimenu submenu example", "1.0", {"submenu 1", "submenu 2", "info"});
     Menu submenu1("", "", {"test 1", "test 2"}, "back to main menu");
     Menu submenu2("", "", {"test 3", "test 4"}, "back to main menu");
     int toBreak;
