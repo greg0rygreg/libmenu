@@ -1,5 +1,6 @@
 #include "libmenu.hpp"
 #include <iostream>
+#include <string>
 
 namespace libmenu {
     Menu::Menu(std::string name, std::string version, std::vector<std::string> options, std::string exitText) {
@@ -13,9 +14,9 @@ namespace libmenu {
         this->version = version;
         this->options = options;
     }
-    void Menu::printAndGetInput(int &optionInt, bool printName) {
+    void Menu::printAndGetInput(int &optionInt, bool printName, bool includeVersion) {
         if (printName) {
-            std::cout << this->getFormattedVersion() << "\n";
+            std::cout << this->getFormattedVersion(includeVersion) << "\n";
         }
         for (int i = 0; i < this->options.size(); i++) {
             std::cout << "(" << i+1 << ") " << this->options[i] << "\n";
@@ -24,20 +25,33 @@ namespace libmenu {
         std::cout << "\n(?) >> ";
         std::cin >> optionInt;
     }
+    void Menu::printAndGetInput(int &optionInt, bool printName) {
+        this->printAndGetInput(optionInt, printName, 1);
+    }
+    std::string Menu::getFormattedVersion(bool includeVersion) {
+        return this->name + (includeVersion ? " v. " + this->version : ""); // python moment
+    }
     std::string Menu::getFormattedVersion() {
-        return this->name + " v. " + this->version; // python moment
+        return this->getFormattedVersion(1); // python moment
     }
-    void clear() {
-        std::cout << "\x1b[2J\x1b[H";
+    namespace util {
+        void clear() {
+            std::cout << "\x1b[2J\x1b[H";
+        }
+        void sep() {
+            std::cout << std::string(75, '-') << "\n";
+        }
     }
-    void sep() {
-        std::cout << std::string(75, '-') << "\n";
-    }
-    void error(std::string info) {
-        std::cout << "\x1b[1;31merror:\x1b[0m " << info << "\n";
-    }
-    void warning(std::string info) {
-        std::cout << "\x1b[1;33mwarning:\x1b[0m " << info << "\n";
+    namespace error {
+        void error(std::string info) {
+            std::cout << "\x1b[1;31merror:\x1b[0m " << info << "\n";
+        }
+        void warning(std::string info) {
+            std::cout << "\x1b[1;33mwarning:\x1b[0m " << info << "\n";
+        }
+        void inputErr(int input) {
+            error("no option made for " + std::to_string(input));
+        }
     }
 }
 // linux: g++ libmenu.cpp -fPIC -shared -o libmenu.so

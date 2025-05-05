@@ -1,34 +1,35 @@
 #include <iostream>
 #include "libmenu.hpp"
 using namespace libmenu;
+using namespace std;
+
 int main() {
     Menu menu("libmenu submenu example", "1.0", {"submenu 1", "submenu 2", "info"});
-    Menu submenu1("", "", {"test 1", "test 2"}, "back to main menu");
-    Menu submenu2("", "", {"test 3", "test 4"}, "back to main menu");
+    Menu submenu1("submenu 1", "", {"test 1", "test 2"}, "back to main menu");
+    Menu submenu2("submenu 2", "", {"test 3", "test 4"}, "back to main menu");
     int toBreak;
-    clear();
+    util::clear();
     while(true) {
         int menuOp;
         toBreak = 0;
-        menu.printAndGetInput(menuOp, 1);
+        menu.printAndGetInput(menuOp, true);
         switch (menuOp) {
             case 1: {
-                clear();
+                util::clear();
                 while (!toBreak){
                     int submenu1Op;
-                    std::cout << "submenu 1:\n";
-                    submenu1.printAndGetInput(submenu1Op, 0);
+                    submenu1.printAndGetInput(submenu1Op, true, false);
                     switch (submenu1Op) {
                         case 1: {
-                            clear();
+                            util::clear();
                             std::cout << "hello world 1\n";
-                            sep();
+                            util::sep();
                             break;
                         }
                         case 2: {
-                            clear();
+                            util::clear();
                             std::cout << "hello world 2\n";
-                            sep();
+                            util::sep();
                             break;
                         }
                         case 0: {
@@ -36,33 +37,32 @@ int main() {
                             break;
                         }
                         default: {
-                            clear();
-                            error("no option made for input " + std::to_string(menuOp));
-                            sep();
+                            util::clear();
+                            error::inputErr(submenu1Op);
+                            util::sep();
                             break;
                         }
                     }
                 }
-                clear();
+                util::clear();
                 break;
             }
             case 2: {
-                clear();
+                util::clear();
                 while (!toBreak){
                     int submenu2Op;
-                    std::cout << "submenu 2:\n";
-                    submenu1.printAndGetInput(submenu2Op, 0);
+                    submenu1.printAndGetInput(submenu2Op, true, false);
                     switch (submenu2Op) {
                         case 1: {
-                            clear();
+                            util::clear();
                             std::cout << "hello world 3\n";
-                            sep();
+                            util::sep();
                             break;
                         }
                         case 2: {
-                            clear();
+                            util::clear();
                             std::cout << "hello world 4\n";
-                            sep();
+                            util::sep();
                             break;
                         }
                         case 0: {
@@ -70,32 +70,32 @@ int main() {
                             break;
                         }
                         default: {
-                            clear();
-                            error("no option made for input " + std::to_string(menuOp));
-                            sep();
+                            util::clear();
+                            error::inputErr(submenu2Op);
+                            util::sep();
                             break;
                         }
                     }
                 }
-                clear();
+                util::clear();
                 break;
             }
             case 3: {
-                clear();
+                util::clear();
                 std::cout << menu.getFormattedVersion() << "\n"
                 << "licensed under MIT license\n";
-                sep();
+                util::sep();
                 break;
             }
             case 0: {
-                clear();
+                util::clear();
                 exit(0);
                 break;
             }
             default: {
-                clear();
-                error("no option made for input " + std::to_string(menuOp));
-                sep();
+                util::clear();
+                error::inputErr(menuOp);
+                util::sep();
                 break;
             }
         }

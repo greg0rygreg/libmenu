@@ -4,10 +4,11 @@
 #include <iostream>
 #include <string>
 using namespace std;
+using namespace libmenu;
 
 int main() {
-    libmenu::Menu menu("libmenu example", "1.0", {"print random number", "print something", "info"});
-    libmenu::clear();
+    Menu menu("libmenu example", "1.0", {"print random number", "print something", "info"});
+    util::clear();
     bool toBreak = 0;
     while (!toBreak) {
         srand(time(nullptr));
@@ -15,45 +16,45 @@ int main() {
         menu.printAndGetInput(menuOp, true);
         switch (menuOp) {
             case 0: {
-                libmenu::clear();
+                util::clear();
                 toBreak = 1;
                 break;
             }
             case 1: {
-                libmenu::clear();
+                util::clear();
                 int minN;
                 int maxN;
                 cout << "min number: ";
                 cin >> minN;
                 cout << "max number: ";
                 cin >> maxN;
-                libmenu::clear();
+                util::clear();
                 cout << "your number is: " << rand() % maxN + minN << "\n";
-                libmenu::sep();
+                util::sep();
                 break;
             }
             case 2: {
-                libmenu::clear();
+                util::clear();
                 cin.ignore();
                 string toPrint;
                 cout << "text to print: ";
                 getline(cin, toPrint);
-                libmenu::clear();
+                util::clear();
                 cout << "you typed: " << toPrint << "\n";
-                libmenu::sep();
+                util::sep();
                 break;
             }
             case 3: {
-                libmenu::clear();
+                util::clear();
                 cout << menu.getFormattedVersion() << "\n"
                 << "licensed under MIT license\n";
-                libmenu::sep();
+                util::sep();
                 break;
             }
             default: {
-                libmenu::clear();
-                libmenu::error("no option made for input " + to_string(menuOp));
-                libmenu::sep();
+                util::clear();
+                error::inputErr(menuOp);
+                util::sep();
                 break;
             }
         }
