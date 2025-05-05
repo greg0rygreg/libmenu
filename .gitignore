@@ -1,4 +1,5 @@
 example
 exampleSubMenu
-libclimenu.so
+libmenu.so
+libmenu.dll
 .vscode
