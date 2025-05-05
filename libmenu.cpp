@@ -50,7 +50,7 @@ namespace libmenu {
             std::cout << "\x1b[1;33mwarning:\x1b[0m " << info << "\n";
         }
         void inputErr(int input) {
-            error("no option made for " + std::to_string(input));
+            error("no option made for input" + std::to_string(input));
         }
     }
 }
