@@ -5,8 +5,8 @@ using namespace std;
 
 int main() {
     Menu menu("libmenu submenu example", "1.0", {"submenu 1", "submenu 2", "info"});
-    Menu submenu1("submenu 1", "", {"test 1", "test 2"}, "back to main menu");
-    Menu submenu2("submenu 2", "", {"test 3", "test 4"}, "back to main menu");
+    Menu submenu1("submenu 1", "", {"test 1.1", "test 1.2"}, "back to main menu");
+    Menu submenu2("submenu 2", "", {"test 2.1", "test 2.2"}, "back to main menu");
     int toBreak;
     util::clear();
     while(true) {
@@ -51,7 +51,7 @@ int main() {
                 util::clear();
                 while (!toBreak){
                     int submenu2Op;
-                    submenu1.printAndGetInput(submenu2Op, true, false);
+                    submenu2.printAndGetInput(submenu2Op, true, false);
                     switch (submenu2Op) {
                         case 1: {
                             util::clear();
