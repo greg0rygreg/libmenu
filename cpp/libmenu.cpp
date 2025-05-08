@@ -32,7 +32,7 @@ namespace libmenu {
         return this->name + (includeVersion ? " v. " + this->version : ""); // python moment
     }
     std::string Menu::getFormattedVersion() {
-        return this->getFormattedVersion(1); // python moment
+        return this->getFormattedVersion(1);
     }
     namespace util {
         void clear() {
