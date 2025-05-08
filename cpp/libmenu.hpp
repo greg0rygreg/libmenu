@@ -43,7 +43,8 @@ namespace libmenu {
         std::string getFormattedVersion(bool includeVersion);
         //get a formatted string of the name and version of the menu
         std::string getFormattedVersion();
-        private:
+        protected:
+        //exit text
         std::string exitText = "exit";
     };
     namespace util {

@@ -98,6 +98,8 @@ int main() {
             }
             case 0: {
                 deallocMenu(menu);
+                deallocMenu(submenu1);
+                deallocMenu(submenu2);
                 free(formattedV);
                 clear();
                 exit(0);
