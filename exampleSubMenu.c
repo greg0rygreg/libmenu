@@ -13,9 +13,9 @@ int main() {
     options2[1] = strdup("test 1.2");
     options3[0] = strdup("test 2.1");
     options3[1] = strdup("test 2.2");
-    Menu *menu = initMenu("libmenu submenus examples for C", "1.0", options1, 3, "exit");
-    Menu *submenu1 = initMenu("submenu 1", "", options2, 2, "back to main menu");
-    Menu *submenu2 = initMenu("submenu 2", "", options3, 2, "back to main menu");
+    MenuC* menu = initMenu("libmenu submenus examples for C", "1.0", options1, 3, "exit");
+    MenuC* submenu1 = initMenu("submenu 1", "", options2, 2, "back to main menu");
+    MenuC* submenu2 = initMenu("submenu 2", "", options3, 2, "back to main menu");
     char* formattedV = getFormattedVersion(menu, 1);
     int toBreak;
     clear();
