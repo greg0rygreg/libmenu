@@ -49,7 +49,7 @@ namespace libmenu {
     namespace util {
         //clear the screen for the next operation
         void clear();
-        //seperate the screen by exactly 75 hyphens
+        //seperate the screen by exactly 75 equal signs
         void sep();
     }
     namespace error {

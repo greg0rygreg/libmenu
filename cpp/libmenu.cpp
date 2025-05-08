@@ -39,7 +39,7 @@ namespace libmenu {
             std::cout << "\x1b[2J\x1b[H";
         }
         void sep() {
-            std::cout << std::string(75, '-') << "\n";
+            std::cout << std::string(75, '=') << "\n";
         }
     }
     namespace error {
