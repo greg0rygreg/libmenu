@@ -1,4 +1,4 @@
-#include "libmenu.h"
+#include "../libmenu.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -41,10 +41,9 @@ int main() {
             }
             case 2: {
                 clear();
-                int ch;
+                ignorePrev();
                 char toPrint[1000];
                 printf("text to print (max of 1000 chars): ");
-                while ((ch = getchar()) != '\n' && ch != EOF);
                 fgets(toPrint, sizeof(toPrint), stdin);
                 clear();
                 printf("you typed: %s", toPrint);

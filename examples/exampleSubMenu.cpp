@@ -1,5 +1,5 @@
 #include <iostream>
-#include "libmenu.hpp"
+#include "../libmenu.hpp"
 using namespace libmenu;
 using namespace std;
 

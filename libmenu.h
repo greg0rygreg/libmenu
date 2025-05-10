@@ -1,5 +1,6 @@
 #ifndef LIBMENU_H
 #define LIBMENU_H
+#include <stdio.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,6 +51,11 @@ extern "C" {
     void warning(char* info);
     //print an input error
     void inputErr(int* input);
+    //ignore previous input incase the next one is an fgets
+    inline void ignorePrev() {
+        char c = getchar();
+        while (c != '\n' && c != EOF);
+    }
 #ifdef __cplusplus
 }
 #endif

@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "libmenu.h"
+#include "../libmenu.h"
 #include <string.h>
+
 int main() {
-    char** options1 = malloc(sizeof(char*) * 3);
-    char** options2 = malloc(sizeof(char*) * 2);
-    char** options3 = malloc(sizeof(char*) * 2);
+    int menuN = 3, submenuN = 2;
+    char** options1 = malloc(sizeof(char*) * menuN);
+    char** options2 = malloc(sizeof(char*) * submenuN);
+    char** options3 = malloc(sizeof(char*) * submenuN);
     options1[0] = strdup("submenu 1");
     options1[1] = strdup("submenu 2");
     options1[2] = strdup("info");
@@ -13,9 +15,9 @@ int main() {
     options2[1] = strdup("test 1.2");
     options3[0] = strdup("test 2.1");
     options3[1] = strdup("test 2.2");
-    MenuC* menu = initMenu("libmenu submenus examples for C", "1.0", options1, 3, "exit");
-    MenuC* submenu1 = initMenu("submenu 1", "", options2, 2, "back to main menu");
-    MenuC* submenu2 = initMenu("submenu 2", "", options3, 2, "back to main menu");
+    MenuC* menu = initMenu("libmenu submenus examples for C", "1.0", options1, menuN, "exit");
+    MenuC* submenu1 = initMenu("submenu 1", "", options2, submenuN, "back to main menu");
+    MenuC* submenu2 = initMenu("submenu 2", "", options3, submenuN, "back to main menu");
     char* formattedV = getFormattedVersion(menu, 1);
     int toBreak;
     clear();
