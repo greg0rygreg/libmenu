@@ -12,7 +12,7 @@ int main() {
     options[1] = strdup("print something");
     options[2] = strdup("info");
     MenuC* menu = initMenu("libmenu example for C", "1.0", options, optionsN, "exit");
-    if (!menu) return 1;
+    if (!menu) {error("failed to initialize menu - exiting"); return 1;}
     char* formattedV = getFormattedVersion(menu, 1);
     clear();
     int toBreak = 0;

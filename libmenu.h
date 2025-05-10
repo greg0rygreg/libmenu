@@ -52,7 +52,7 @@ extern "C" {
     //print an input error
     void inputErr(int* input);
     //ignore previous input incase the next one is an fgets
-    inline void ignorePrev() {
+    static inline void ignorePrev() {
         char c = getchar();
         while (c != '\n' && c != EOF);
     }

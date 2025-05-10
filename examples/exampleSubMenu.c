@@ -18,6 +18,7 @@ int main() {
     MenuC* menu = initMenu("libmenu submenus examples for C", "1.0", options1, menuN, "exit");
     MenuC* submenu1 = initMenu("submenu 1", "", options2, submenuN, "back to main menu");
     MenuC* submenu2 = initMenu("submenu 2", "", options3, submenuN, "back to main menu");
+    if (!menu || !submenu1 || !submenu2) {error("failed to initialize one of the menus - exiting"); return 1;}
     char* formattedV = getFormattedVersion(menu, 1);
     int toBreak;
     clear();
