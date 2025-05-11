@@ -68,5 +68,5 @@ int main() {
     free(formattedV);
     return 0;
 }
-// linux: gcc example.c -o example ./libmenu.so
-// windows: gcc example.c -o example.exe ./libmenu.dll
+// linux: gcc examples/example.c -o example ./libmenu.so
+// windows: gcc examples/example.c -o example.exe ./libmenu.dll

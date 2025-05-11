@@ -102,5 +102,5 @@ int main() {
     }
     return 0;
 }
-// linux: g++ example.cpp -o example ./libmenu.so
-// windows: g++ example.cpp -o example.exe ./libmenu.dll
+// linux: g++ examples/example.cpp -o example ./libmenu.so
+// windows: g++ examples/example.cpp -o example.exe ./libmenu.dll
