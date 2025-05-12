@@ -48,10 +48,11 @@ namespace libmenu {
     }
     namespace error {
         void error(std::string info) {
-            std::cout << "\x1b[1;31merror:\x1b[0m " << info << "\n";
+            // i love unoptimizing things
+            std::cout << "\x1b[1;31merror:\x1b[0m\x1b[1m " << info << "\x1b[0m\n";
         }
         void warning(std::string info) {
-            std::cout << "\x1b[1;33mwarning:\x1b[0m " << info << "\n";
+            std::cout << "\x1b[1;33mwarning:\x1b[0m\x1b[1m " << info << "\x1b[0m\n";
         }
         void inputErr(int input) {
             error("no option made for input " + std::to_string(input));
@@ -126,10 +127,10 @@ extern "C" {
     }
 
     void error(char* info) {
-        printf("\x1b[1;31merror:\x1b[0m %s\n", info);
+        printf("\x1b[1;31merror:\x1b[0m\x1b[1m %s\x1b[0m\n", info);
     }
     void warning(char* info) {
-        printf("\x1b[1;33mwarning:\x1b[0m %s\n", info);
+        printf("\x1b[1;33mwarning:\x1b[0m\x1b[1m %s\x1b[0m\n", info);
     }
     void inputErr(int *input) {
         char* _temp = (char*)malloc(25 + sizeof(*input));
