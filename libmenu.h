@@ -60,3 +60,4 @@ extern "C" {
 }
 #endif
 #endif // LIBMENU_H
+// (no compile)

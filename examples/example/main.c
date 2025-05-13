@@ -1,4 +1,4 @@
-#include "../libmenu.h"
+#include "../../libmenu.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -68,5 +68,5 @@ int main() {
     free(formattedV);
     return 0;
 }
-// linux: gcc examples/example.c -o example ./libmenu.so
-// windows: gcc examples/example.c -o example.exe ./libmenu.dll
+// linux: gcc examples/example/main.c -o example ./libmenu.so
+// windows: gcc examples/example/main.c -o example.exe ./libmenu.dll

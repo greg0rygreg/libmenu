@@ -1,6 +1,6 @@
-example
-exampleSubMenu
+example.bin
+exampleSubMenu.bin
 libmenu.so
 libmenu.dll
 .vscode
-test
+test.bin

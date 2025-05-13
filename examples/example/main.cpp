@@ -1,4 +1,4 @@
-#include "../libmenu.hpp"
+#include "../../libmenu.hpp"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -46,8 +46,8 @@ int main() {
             }
             case 3: {
                 util::clear();
-                cout << menu.getFormattedVersion() << "\n"
-                << "licensed under MIT license\n";
+                cout << menu.getFormattedVersion()
+                << "\nlicensed under MIT license\n";
                 util::sep();
                 break;
             }
@@ -61,5 +61,5 @@ int main() {
     }
     return 0;
 }
-// linux: g++ examples/example.cpp -o example ./libmenu.so
-// windows: g++ examples/example.cpp -o example.exe ./libmenu.dll
+// linux: g++ examples/example/main.cpp -o example ./libmenu.so
+// windows: g++ examples/example/main.cpp -o example.exe ./libmenu.dll

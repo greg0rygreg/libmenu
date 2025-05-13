@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../libmenu.h"
+#include "../../libmenu.h"
 #include <string.h>
 
 int main() {
@@ -118,5 +118,5 @@ int main() {
     }
     return 0;
 }
-// linux: g++ examples/exampleSubMenu.c -o exampleSubMenu ./libmenu.so
-// windows: g++ examples/exampleSubMenu.c -o exampleSubMenu.exe ./libmenu.dll
+// linux: g++ examples/exampleSubMenu/main.c -o exampleSubMenu ./libmenu.so
+// windows: g++ examples/exampleSubMenu/main.c -o exampleSubMenu.exe ./libmenu.dll

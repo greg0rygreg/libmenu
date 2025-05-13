@@ -3,6 +3,7 @@
 // that tricks itself into thinking it's the better option
 // for memory management and testing applications
 // (yes i tried to make the message as long as possible)
+// GC = Game Conqueror (FOSS game memory manipulator)
 #include "../libmenu.h"
 #include <stdlib.h>
 #include <stdio.h>
