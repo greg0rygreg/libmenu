@@ -71,5 +71,8 @@ int main() {
     free(test);
     return 0;
 }
-// linux: g++ examples/GCTest.c -o GCTest ./libmenu.so
-// windows: g++ examples/GCTest.c -o GCTest.exe ./libmenu.dll
+// linux: gcc examples/GCTest.c -o GCTest ./libmenu.so
+// windows: gcc examples/GCTest.c -o GCTest.exe ./libmenu.dll
+// OR 
+// linux: gcc examples/GCTest.c libmenu.c -o GCTest
+// windows: gcc examples/GCTest.c libmenu.c -o GCTest.exe

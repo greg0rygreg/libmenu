@@ -70,3 +70,6 @@ int main() {
 }
 // linux: gcc examples/example/main.c -o example ./libmenu.so
 // windows: gcc examples/example/main.c -o example.exe ./libmenu.dll
+// OR
+// linux: gcc examples/example/main.c libmenu.c -o example
+// windows: gcc examples/example/main.c libmenu.c -o example.exe
