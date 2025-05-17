@@ -19,7 +19,7 @@ namespace libmenu {
         if (printName) {
             std::cout << this->getFormattedVersion(includeVersion) << "\n";
         }
-        for (int i = 0; i < this->options.size(); i++) {
+        for (long unsigned i = 0; i < this->options.size(); i++) {
             std::cout << "(" << i+1 << ") " << this->options[i] << "\n";
         }
         std::cout << "(0) " << this->exitText << "\n";

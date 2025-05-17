@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 
-MenuC* initMenu(char* name, char* version, char** options, int optionsN, char* exitText) {
+MenuC* initMenu(char* name, char* version, char** options, long unsigned optionsN, char* exitText) {
     MenuC* menu = (MenuC*)malloc(sizeof(MenuC));
     if (!menu) return NULL;
     menu->name = strdup(name);
@@ -16,7 +16,7 @@ MenuC* initMenu(char* name, char* version, char** options, int optionsN, char* e
         free(menu);
         return NULL;
     }
-    for (int i = 0; i < optionsN; i++) {
+    for (long unsigned i = 0; i < optionsN; i++) {
         menu->options[i] = strdup(options[i]);
     }
     menu->exitText = strdup(exitText);
@@ -36,8 +36,8 @@ void printAndGetInput(MenuC* menu, int *optionInt, int printName, int includeVer
     if (printName) {
         printf("%s\n", _temp);
     }
-    for (int i = 0; i < menu->optionsN; i++) {
-        printf("(%d) %s\n", i+1, menu->options[i]);
+    for (long unsigned i = 0; i < menu->optionsN; i++) {
+        printf("(%lu) %s\n", i+1, menu->options[i]);
     }
     printf("(0) %s\n", menu->exitText);
     printf("\n(?) >> ");
@@ -45,7 +45,7 @@ void printAndGetInput(MenuC* menu, int *optionInt, int printName, int includeVer
     free(_temp);
 }
 void deallocMenu(MenuC* menu) {
-    for (int i = 0; i < menu->optionsN; i++) {
+    for (long unsigned i = 0; i < menu->optionsN; i++) {
         free(menu->options[i]);
     }
     free(menu->options);

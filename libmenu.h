@@ -14,12 +14,12 @@ extern "C" {
         //options of the menu
         char** options;
         //number of options of the menu
-        int optionsN;
+        long unsigned optionsN;
         //exit text
         char* exitText;
     } MenuC;
     //menu configurator
-    MenuC* initMenu(char* name, char* version, char** options, int optionsN, char* exitText);
+    MenuC* initMenu(char* name, char* version, char** options, long unsigned optionsN, char* exitText);
     /*get a formatted string of the name and version of the menu
 
     `int includeVersion`: defines if you want to include `Menu->version`,
