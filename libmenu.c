@@ -3,8 +3,8 @@
 #include <string.h>
 #include <stdio.h>
 
-MenuC* initMenu(char* name, char* version, char** options, long unsigned optionsN, char* exitText) {
-    MenuC* menu = (MenuC*)malloc(sizeof(MenuC));
+Menu* initMenu(char* name, char* version, char** options, long unsigned optionsN, char* exitText) {
+    Menu* menu = (Menu*)malloc(sizeof(Menu));
     if (!menu) return NULL;
     menu->name = strdup(name);
     menu->version = strdup(version);
@@ -22,8 +22,8 @@ MenuC* initMenu(char* name, char* version, char** options, long unsigned options
     menu->exitText = strdup(exitText);
     return menu;
 }
-SelMenuC* initSelMenu(char* action, char** options, long unsigned optionsN, char* cancelText) {
-    SelMenuC* menu = (SelMenuC*)malloc(sizeof(SelMenuC));
+SelMenu* initSelMenu(char* action, char** options, long unsigned optionsN, char* cancelText) {
+    SelMenu* menu = (SelMenu*)malloc(sizeof(SelMenu));
     if (!menu) return NULL;
     menu->action = strdup(action);
     menu->optionsN = optionsN;
@@ -39,7 +39,7 @@ SelMenuC* initSelMenu(char* action, char** options, long unsigned optionsN, char
     menu->cancelText = strdup(cancelText);
     return menu;
 }
-char* getFormattedVersion(MenuC* menu, int includeVersion) {
+char* getFormattedVersion(Menu* menu, int includeVersion) {
     char* _temp = (char*)malloc(strlen(menu->name) + (includeVersion ? strlen(menu->version) + 5 : 1));
     if (includeVersion)
         sprintf(_temp, "%s v. %s", menu->name, menu->version);
@@ -47,7 +47,7 @@ char* getFormattedVersion(MenuC* menu, int includeVersion) {
         sprintf(_temp, "%s", menu->name);
     return _temp;
 }
-void printAndGetInput(MenuC* menu, int *optionInt, int printName, int includeVersion) {
+void printAndGetInput(Menu* menu, int *optionInt, int printName, int includeVersion) {
     char* _temp = getFormattedVersion(menu, includeVersion);
     if (printName)
         printf("%s\n", _temp);
@@ -58,7 +58,7 @@ void printAndGetInput(MenuC* menu, int *optionInt, int printName, int includeVer
     scanf("%d", optionInt);
     free(_temp);
 }
-void getSelMenuInput(SelMenuC* menu, int *optionInt, int printAction, int includeCancel) {
+void getSelMenuInput(SelMenu* menu, int *optionInt, int printAction, int includeCancel) {
     if (printAction)
         printf("%s\n", menu->action);
     for (long unsigned i = 0; i < menu->optionsN; i++)
@@ -68,7 +68,7 @@ void getSelMenuInput(SelMenuC* menu, int *optionInt, int printAction, int includ
     printf("\n(?) >> ");
     scanf("%d", optionInt);
 }
-void deallocMenu(MenuC* menu) {
+void deallocMenu(Menu* menu) {
     for (long unsigned i = 0; i < menu->optionsN; i++) {
         free(menu->options[i]);
     }
@@ -78,7 +78,7 @@ void deallocMenu(MenuC* menu) {
     free(menu->version);
     free(menu);
 }
-void deallocSelMenu(SelMenuC* menu) {
+void deallocSelMenu(SelMenu* menu) {
     for (long unsigned i = 0; i < menu->optionsN; i++) {
         free(menu->options[i]);
     }

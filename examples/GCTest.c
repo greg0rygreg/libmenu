@@ -16,7 +16,7 @@ int main() {
     options[0] = strdup("create pointer");
     options[1] = strdup("print pointer");
     options[2] = strdup("info");
-    MenuC* menu = initMenu("libmenu GameConqueror test", "1.0", options, optionsN, "exit");
+    Menu* menu = initMenu("libmenu GameConqueror test", "1.0", options, optionsN, "exit");
     if (!menu) {error("failed to initialize menu - exiting"); return 1;}
     char* formattedV = getFormattedVersion(menu, 1);
     char* test = NULL;
@@ -71,8 +71,4 @@ int main() {
     free(test);
     return 0;
 }
-// linux: gcc examples/GCTest.c -o GCTest ./libmenu.so
-// windows: gcc examples/GCTest.c -o GCTest.exe ./libmenu.dll
-// OR 
-// linux: gcc examples/GCTest.c libmenu.c -o GCTest
-// windows: gcc examples/GCTest.c libmenu.c -o GCTest.exe
+// use make

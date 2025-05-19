@@ -17,24 +17,24 @@ extern "C" {
         long unsigned optionsN;
         //exit text
         char* exitText;
-    } MenuC;
+    } Menu;
     //contains information about a selection menu
     typedef struct {
         char* action;
         char** options;
         long unsigned optionsN;
         char* cancelText;
-    } SelMenuC;
+    } SelMenu;
     //menu configurator
-    MenuC* initMenu(char* name, char* version, char** options, long unsigned optionsN, char* exitText);
+    Menu* initMenu(char* name, char* version, char** options, long unsigned optionsN, char* exitText);
     //selection menu configurator
-    SelMenuC* initSelMenu(char* action, char** options, long unsigned optionsN, char* exitText);
+    SelMenu* initSelMenu(char* action, char** options, long unsigned optionsN, char* exitText);
     /*get a formatted string of the name and version of the menu
 
     `int includeVersion`: defines if you want to include `Menu->version`,
     useful for submenus
     */
-    char* getFormattedVersion(MenuC* menu, int includeVersion);
+    char* getFormattedVersion(Menu* menu, int includeVersion);
     /*print the main menu and get user input and put it
     on `optionInt`
     `int printName`: if 1, print the name of the app defined
@@ -45,11 +45,11 @@ extern "C" {
     `int includeVersion`: defines if you want to include `Menu->version`
     on the name "header", useful for submenus
     */
-    void printAndGetInput(MenuC* menu, int *optionInt, int printName, int includeVersion);
-    void getSelMenuInput(SelMenuC* selMenu, int *optionInt, int printAction, int includeCancel);
+    void printAndGetInput(Menu* menu, int *optionInt, int printName, int includeVersion);
+    void getSelMenuInput(SelMenu* selMenu, int *optionInt, int printAction, int includeCancel);
     //deallocates a menu
-    void deallocMenu(MenuC* menu);
-    void deallocSelMenu(SelMenuC* menu);
+    void deallocMenu(Menu* menu);
+    void deallocSelMenu(SelMenu* menu);
     //clear the screen for the next operation
     void clear();
     //seperate the screen by exactly 75 equal signs

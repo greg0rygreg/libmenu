@@ -15,9 +15,9 @@ int main() {
     options2[1] = strdup("test 1.2");
     options3[0] = strdup("test 2.1");
     options3[1] = strdup("test 2.2");
-    MenuC* menu = initMenu("libmenu selection menus examples for C", "1.0", options1, menuN, "exit");
-    SelMenuC* selmenu1 = initSelMenu("selmenu 1:", options2, submenuN, "cancel");
-    SelMenuC* selmenu2 = initSelMenu("selmenu 2:", options3, submenuN, "cancel");
+    Menu* menu = initMenu("libmenu selection menus examples for C", "1.0", options1, menuN, "exit");
+    SelMenu* selmenu1 = initSelMenu("selection menu 1:", options2, submenuN, "cancel");
+    SelMenu* selmenu2 = initSelMenu("selection menu 2:", options3, submenuN, "cancel");
     if (!menu || !selmenu1 || !selmenu2) {error("failed to initialize one of the menus - exiting"); return 1;}
     char* formattedV = getFormattedVersion(menu, 1);
     clear();

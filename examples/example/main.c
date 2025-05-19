@@ -11,7 +11,7 @@ int main() {
     options[0] = strdup("print random number");
     options[1] = strdup("print something");
     options[2] = strdup("info");
-    MenuC* menu = initMenu("libmenu example for C", "1.0", options, optionsN, "exit");
+    Menu* menu = initMenu("libmenu example for C", "1.0", options, optionsN, "exit");
     if (!menu) {error("failed to initialize menu - exiting"); return 1;}
     char* formattedV = getFormattedVersion(menu, 1);
     clear();

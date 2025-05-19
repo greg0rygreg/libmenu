@@ -15,6 +15,15 @@ namespace libmenu {
         this->version = version;
         this->options = options;
     }
+    SelMenu::SelMenu(std::string action, std::vector<std::string> options, std::string cancelText) {
+        this->action = action;
+        this->options = options;
+        this->cancelText = cancelText;
+    }
+    SelMenu::SelMenu(std::string action, std::vector<std::string> options) {
+        this->action = action;
+        this->options = options;
+    }
     void Menu::printAndGetInput(int &optionInt, bool printName, bool includeVersion) {
         if (printName) {
             std::cout << this->getFormattedVersion(includeVersion) << "\n";
@@ -23,6 +32,17 @@ namespace libmenu {
             std::cout << "(" << i+1 << ") " << this->options[i] << "\n";
         }
         std::cout << "(0) " << this->exitText << "\n";
+        std::cout << "\n(?) >> ";
+        std::cin >> optionInt;
+    }
+    void SelMenu::printAndGetInput(int &optionInt, bool printAction) {
+        if (printAction) {
+            std::cout << this->action << "\n";
+        }
+        for (long unsigned i = 0; i < this->options.size(); i++) {
+            std::cout << "(" << i+1 << ") " << this->options[i] << "\n";
+        }
+        std::cout << "(0) " << this->cancelText << "\n";
         std::cout << "\n(?) >> ";
         std::cin >> optionInt;
     }

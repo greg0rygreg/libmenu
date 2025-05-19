@@ -34,13 +34,13 @@ exampleSubMenuCPP.o:
 
 exampleSelMenuC: exampleSelMenuC.o libmenuC.o
 	$(cc) -o exampleSelMenuC$(e) exampleSelMenuC.o libmenuC.o
-#exampleSelMenuCPP: exampleSelMenuCPP.o libmenuCPP.o
-#	$(cpc) -o exampleSelMenuCPP$(e) exampleSelMenuCPP.o libmenuCPP.o
+exampleSelMenuCPP: exampleSelMenuCPP.o libmenuCPP.o
+	$(cpc) -o exampleSelMenuCPP$(e) exampleSelMenuCPP.o libmenuCPP.o
 
 exampleSelMenuC.o:
 	$(cc) -c exampleSelMenu/main.c -o exampleSelMenuC.o
-#exampleSelMenuCPP.o:
-#	$(cc) -c exampleSelMenu/main.cpp -o exampleSelMenuCPP.o
+exampleSelMenuCPP.o:
+	$(cc) -c exampleSelMenu/main.cpp -o exampleSelMenuCPP.o
 
 GCTest: GCTest.o libmenuC.o
 	$(cc) -o GCTest$(e) GCTest.o libmenuC.o
