@@ -18,8 +18,17 @@ extern "C" {
         //exit text
         char* exitText;
     } MenuC;
+    //contains information about a selection menu
+    typedef struct {
+        char* action;
+        char** options;
+        long unsigned optionsN;
+        char* cancelText;
+    } SelMenuC;
     //menu configurator
     MenuC* initMenu(char* name, char* version, char** options, long unsigned optionsN, char* exitText);
+    //selection menu configurator
+    SelMenuC* initSelMenu(char* action, char** options, long unsigned optionsN, char* exitText);
     /*get a formatted string of the name and version of the menu
 
     `int includeVersion`: defines if you want to include `Menu->version`,
@@ -37,8 +46,10 @@ extern "C" {
     on the name "header", useful for submenus
     */
     void printAndGetInput(MenuC* menu, int *optionInt, int printName, int includeVersion);
+    void getSelMenuInput(SelMenuC* selMenu, int *optionInt, int printAction, int includeCancel);
     //deallocates a menu
     void deallocMenu(MenuC* menu);
+    void deallocSelMenu(SelMenuC* menu);
     //clear the screen for the next operation
     void clear();
     //seperate the screen by exactly 75 equal signs

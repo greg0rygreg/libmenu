@@ -102,8 +102,4 @@ int main() {
     }
     return 0;
 }
-// linux: g++ examples/exampleSubMenu/main.cpp -o exampleSubMenu ./libmenu.so
-// windows: g++ examples/exampleSubMenu/main.cpp -o exampleSubMenu.exe ./libmenu.dll
-// OR
-// linux: g++ examples/exampleSubMenu/main.cpp libmenu.cpp -o exampleSubMenu
-// windows: g++ examples/exampleSubMenu/main.cpp libmenu.cpp -o exampleSubMenu.exe
+// use make

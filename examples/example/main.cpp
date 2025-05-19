@@ -61,8 +61,4 @@ int main() {
     }
     return 0;
 }
-// linux: g++ examples/example/main.cpp -o example ./libmenu.so
-// windows: g++ examples/example/main.cpp -o example.exe ./libmenu.dll
-// OR
-// linux: g++ examples/example/main.cpp libmenu.cpp -o example
-// windows: g++ examples/example/main.cpp libmenu.cpp -o example.exe
+// use make

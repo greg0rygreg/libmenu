@@ -22,27 +22,51 @@ MenuC* initMenu(char* name, char* version, char** options, long unsigned options
     menu->exitText = strdup(exitText);
     return menu;
 }
+SelMenuC* initSelMenu(char* action, char** options, long unsigned optionsN, char* cancelText) {
+    SelMenuC* menu = (SelMenuC*)malloc(sizeof(SelMenuC));
+    if (!menu) return NULL;
+    menu->action = strdup(action);
+    menu->optionsN = optionsN;
+    menu->options = (char**)malloc(sizeof(char*) * optionsN);
+    if (!menu->options) {
+        free(menu->action);
+        free(menu);
+        return NULL;
+    }
+    for (long unsigned i = 0; i < optionsN; i++) {
+        menu->options[i] = strdup(options[i]);
+    }
+    menu->cancelText = strdup(cancelText);
+    return menu;
+}
 char* getFormattedVersion(MenuC* menu, int includeVersion) {
     char* _temp = (char*)malloc(strlen(menu->name) + (includeVersion ? strlen(menu->version) + 5 : 1));
-    if (includeVersion) {
+    if (includeVersion)
         sprintf(_temp, "%s v. %s", menu->name, menu->version);
-    } else {
+    else
         sprintf(_temp, "%s", menu->name);
-    }
     return _temp;
 }
 void printAndGetInput(MenuC* menu, int *optionInt, int printName, int includeVersion) {
     char* _temp = getFormattedVersion(menu, includeVersion);
-    if (printName) {
+    if (printName)
         printf("%s\n", _temp);
-    }
-    for (long unsigned i = 0; i < menu->optionsN; i++) {
+    for (long unsigned i = 0; i < menu->optionsN; i++)
         printf("(%lu) %s\n", i+1, menu->options[i]);
-    }
     printf("(0) %s\n", menu->exitText);
     printf("\n(?) >> ");
     scanf("%d", optionInt);
     free(_temp);
+}
+void getSelMenuInput(SelMenuC* menu, int *optionInt, int printAction, int includeCancel) {
+    if (printAction)
+        printf("%s\n", menu->action);
+    for (long unsigned i = 0; i < menu->optionsN; i++)
+        printf("(%lu) %s\n", i+1, menu->options[i]);
+    if (includeCancel)
+        printf("(0) %s\n", menu->cancelText);
+    printf("\n(?) >> ");
+    scanf("%d", optionInt);
 }
 void deallocMenu(MenuC* menu) {
     for (long unsigned i = 0; i < menu->optionsN; i++) {
@@ -52,6 +76,15 @@ void deallocMenu(MenuC* menu) {
     free(menu->exitText);
     free(menu->name);
     free(menu->version);
+    free(menu);
+}
+void deallocSelMenu(SelMenuC* menu) {
+    for (long unsigned i = 0; i < menu->optionsN; i++) {
+        free(menu->options[i]);
+    }
+    free(menu->options);
+    free(menu->cancelText);
+    free(menu->action);
     free(menu);
 }
 
@@ -78,6 +111,4 @@ void inputErr(int *input) {
     free(_temp);
 }
 
-// linux: gcc libmenu.c -fPIC -shared -o libmenu.so
-// windows: gcc libmenu.c -fPIC -shared -o libmenu.dll
-// (or check compile commands in one of the examples)
+// use make

@@ -57,6 +57,4 @@ namespace libmenu {
     }
 }
 
-// linux: g++ libmenu.cpp -fPIC -shared -o libmenu.so
-// windows: g++ libmenu.cpp -fPIC -shared -o libmenu.dll
-// (or check compile commands in one of the examples)
+// use make
