@@ -7,7 +7,11 @@ Menu* initMenu(char* name, char* version, char** options, long unsigned optionsN
     Menu* menu = (Menu*)malloc(sizeof(Menu));
     if (!menu) return NULL;
     menu->name = strdup(name);
+    if (!menu->name) menu->name = strdup("libmenu binary");
+    if (!menu->name) return NULL;
     menu->version = strdup(version);
+    if (!menu->version) menu->version = strdup("1.0");
+    if (!menu->version) return NULL;
     menu->optionsN = optionsN;
     menu->options = (char**)malloc(sizeof(char*) * optionsN);
     if (!menu->options) {
@@ -16,16 +20,18 @@ Menu* initMenu(char* name, char* version, char** options, long unsigned optionsN
         free(menu);
         return NULL;
     }
-    for (long unsigned i = 0; i < optionsN; i++) {
-        menu->options[i] = strdup(options[i]);
-    }
+    for (long unsigned i = 0; i < optionsN; i++) menu->options[i] = options[i];
     menu->exitText = strdup(exitText);
+    if (!menu->exitText) menu->exitText = strdup("exit");
+    if (!menu->exitText) return NULL;
     return menu;
 }
 SelMenu* initSelMenu(char* action, char** options, long unsigned optionsN, char* cancelText) {
     SelMenu* menu = (SelMenu*)malloc(sizeof(SelMenu));
     if (!menu) return NULL;
     menu->action = strdup(action);
+    if (!menu->action) menu->action = strdup("options:");
+    if (!menu->action) return NULL;
     menu->optionsN = optionsN;
     menu->options = (char**)malloc(sizeof(char*) * optionsN);
     if (!menu->options) {
@@ -33,14 +39,15 @@ SelMenu* initSelMenu(char* action, char** options, long unsigned optionsN, char*
         free(menu);
         return NULL;
     }
-    for (long unsigned i = 0; i < optionsN; i++) {
-        menu->options[i] = strdup(options[i]);
-    }
+    for (long unsigned i = 0; i < optionsN; i++) menu->options[i] = options[i];
     menu->cancelText = strdup(cancelText);
+    if (!menu->cancelText) menu->cancelText = strdup("cancel");
+    if (!menu->cancelText) return NULL;
     return menu;
 }
 char* getFormattedVersion(Menu* menu, int includeVersion) {
     char* _temp = (char*)malloc(strlen(menu->name) + (includeVersion ? strlen(menu->version) + 5 : 1));
+    if (!_temp) return NULL;
     if (includeVersion)
         sprintf(_temp, "%s v. %s", menu->name, menu->version);
     else
@@ -69,9 +76,7 @@ void getSelMenuInput(SelMenu* menu, int *optionInt, int printAction, int include
     scanf("%d", optionInt);
 }
 void deallocMenu(Menu* menu) {
-    for (long unsigned i = 0; i < menu->optionsN; i++) {
-        free(menu->options[i]);
-    }
+    for (long unsigned i = 0; i < menu->optionsN; i++) free(menu->options[i]);
     free(menu->options);
     free(menu->exitText);
     free(menu->name);
@@ -79,9 +84,7 @@ void deallocMenu(Menu* menu) {
     free(menu);
 }
 void deallocSelMenu(SelMenu* menu) {
-    for (long unsigned i = 0; i < menu->optionsN; i++) {
-        free(menu->options[i]);
-    }
+    for (long unsigned i = 0; i < menu->optionsN; i++) free(menu->options[i]);
     free(menu->options);
     free(menu->cancelText);
     free(menu->action);
