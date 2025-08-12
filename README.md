@@ -2,4 +2,4 @@
 facilitates the making of menus
 
 ## TODO
-- [ ] document this README
+- [x] document this README (won't do it lmao)

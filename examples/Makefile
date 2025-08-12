@@ -1,7 +1,6 @@
 flags = -Wall -g
-# replace clang with gcc and clang++ with g++ for the GNU Compiler Collection
+# replace clang with gcc for the GNU Compiler Collection
 cc = clang $(flags)
-cpc = clang++ $(flags)
 ifeq ($(OS), Windows_NT)
 	e = .exe
 	del = del /Q
@@ -10,7 +9,7 @@ else
 	del = rm -f
 endif
 
-all: example exampleSubMenu exampleSelMenu GCTest clean
+all: example exampleSubMenu GCTest clean
 
 example: example.o libmenu.o
 	$(cc) -o example$(e) example.o libmenu.o
@@ -23,12 +22,6 @@ exampleSubMenu: exampleSubMenu.o libmenu.o
 
 exampleSubMenu.o:
 	$(cc) -c exampleSubMenu.c -o exampleSubMenu.o
-
-exampleSelMenu: exampleSelMenu.o libmenu.o
-	$(cc) -o exampleSelMenu$(e) exampleSelMenu.o libmenu.o
-
-exampleSelMenu.o:
-	$(cc) -c exampleSelMenu.c -o exampleSelMenu.o
 
 GCTest: GCTest.o libmenu.o
 	$(cc) -o GCTest$(e) GCTest.o libmenu.o
