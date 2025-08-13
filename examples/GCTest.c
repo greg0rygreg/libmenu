@@ -11,7 +11,7 @@
 #include <string.h>
 
 int main() {
-  char* options[3] = {"create pointer", "print pointer", "info"};
+  char* options[] = {"create pointer", "print pointer", "info"};
   Menu* menu = initMenu("libmenu GameConqueror test", "1.0", options, 3, "exit");
   if (!menu) {
     error("failed to initialize menu - exiting");
