@@ -6,9 +6,9 @@ int main() {
   char* options1[] = {"submenu 1", "submenu 2", "info"};
   char* options2[] = {"test 1.1", "test 1.2"};
   char* options3[] = {"test 2.1", "test 2.2"};
-  Menu* menu = initMenu("libmenu submenus examples for C", "1.0", options1, 3, "exit");
-  Menu* submenu1 = initMenu("submenu 1", "", options2, 2, "back to main menu");
-  Menu* submenu2 = initMenu("submenu 2", "", options3, 2, "back to main menu");
+  Menu* menu = initMenu("libmenu submenus examples for C", "1.0", options1, 3, "exit", false);
+  Menu* submenu1 = initMenu("submenu 1", "", options2, 2, "back to main menu", true);
+  Menu* submenu2 = initMenu("submenu 2", "", options3, 2, "back to main menu", true);
   if (!menu || !submenu1 || !submenu2) {
     error("failed to initialize one of the menus - exiting");
     return 1;

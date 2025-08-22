@@ -12,7 +12,7 @@
 
 int main() {
   char* options[] = {"create pointer", "print pointer", "info"};
-  Menu* menu = initMenu("libmenu GameConqueror test", "1.0", options, 3, "exit");
+  Menu* menu = initMenu("libmenu GameConqueror test", "1.0", options, 3, "exit", false);
   if (!menu) {
     error("failed to initialize menu - exiting");
     return 1;

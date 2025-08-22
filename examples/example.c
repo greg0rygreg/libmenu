@@ -7,7 +7,7 @@
 
 int main() {
   char* options[] = {"print random number", "print something", "info"};
-  Menu* menu = initMenu("libmenu example for C", "1.0", options, 3, "exit");
+  Menu* menu = initMenu("libmenu example for C", "1.0", options, 3, "exit", false);
   if (!menu) {
     error("failed to initialize menu - exiting");
     return 1;
