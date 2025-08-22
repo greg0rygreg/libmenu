@@ -42,7 +42,7 @@ void printAndGetInput(Menu* menu, int *optionInt, bool printName, bool includeVe
   char* _temp = getFormattedVersion(menu, includeVersion);
   if (printName)
     printf("%s\n", _temp);
-  for (unsigned long i = 0; i < menu->optionsN; i++)
+  for (size_t i = 0; i < menu->optionsN; i++)
     printf("(%lu) %s\n", i+1, menu->options[i]);
   printf("(0) %s\n", menu->exitText);
   printf("\n(?) >> ");
