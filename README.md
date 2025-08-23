@@ -1,11 +1,6 @@
-# NOTICE
-
-i'm no longer updating this
-
-[libmenu-remake](https://github.com/greg0rygreg/libmenu-remake) is the better one now
-
-# libmenu
-facilitates the making of menus
+# libmenu-2.0.0
+I remade libmenu to be easier to read without much bloat in the source
 
 ## TODO
-- [x] document this README (won't do it lmao)
+- [x] add documentation to [`libmenu.h`](libmenu.h) (pretty sure the names of the methods are very self-explanatory)
+- [ ] make sure not to add useless stuff

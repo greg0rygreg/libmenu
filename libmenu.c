@@ -1,91 +1,110 @@
 #include "libmenu.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
+#include <stdarg.h>
 
-/* ------------------------- * INITIALIZATION * ------------------------- */
-Menu* initMenu(char* name, char* version, char** options, long unsigned optionsN, char* exitText, bool isSubmenu) {
-  Menu* menu = (Menu*)malloc(sizeof(Menu));
-  if (!menu) return NULL;
-  menu->name = name;
-  menu->version = version;
-  menu->optionsN = optionsN;
-  menu->options = options;
-  menu->exitText = exitText;
-  // since libmenu is open source, you can just
-  // comment this part out so that libmenu won't
-  // assume that your menu is a submenu if the
-  // version parameter is empty
-  if (strlen(version) == 0)
-    menu->isSubmenu = true;
-  else
-    menu->isSubmenu = isSubmenu;
-  return menu;
-}
-
-/* ------------------------- * VERSION FORMATTING... what * ------------------------- */
-char* getFormattedVersion(Menu* menu, bool includeVersion) {
-  char* _temp = (char*)malloc(strlen(menu->name) + strlen(menu->version) + 5);
-  if (!_temp) return NULL;
-  if (includeVersion && !menu->isSubmenu)
-    snprintf(_temp, strlen(menu->name) + strlen(menu->version) + 5, "%s v. %s", menu->name, menu->version);
-  else {
-    _temp = realloc(_temp, strlen(menu->name) + 1);
-    snprintf(_temp, strlen(menu->name) + 1, "%s", menu->name);
+lm_menu *make_menu(
+  char *name,
+  char *version,
+  char **options,
+  uint8_t options_l,
+  char *exit_t,
+  bool submenu
+) {
+  lm_menu *ret = (lm_menu*)malloc(sizeof(lm_menu));
+  if (!ret) return NULL;
+  if (!options || options_l == 0) return NULL;
+  if (!exit_t) {
+    if (!submenu)
+      exit_t = "exit";
+    else
+      exit_t = "go back";
   }
-  return _temp;
+
+  ret->name = name;
+  ret->version = version;
+  ret->options = options;
+  ret->options_l = options_l;
+  ret->last_selection = 0;
+  ret->exit_t = exit_t;
+  ret->submenu = submenu;
+
+  return ret;
 }
 
-/* ------------------------- * STDIN OPERATIONS * ------------------------- */
-void printAndGetInput(Menu* menu, int *optionInt, bool printName, bool includeVersion) {
-  *optionInt = 0; // that's all it took... interesting
-  char* _temp = getFormattedVersion(menu, includeVersion);
-  if (printName)
-    printf("%s\n", _temp);
-  for (size_t i = 0; i < menu->optionsN; i++)
-    printf("(%lu) %s\n", i+1, menu->options[i]);
-  printf("(0) %s\n", menu->exitText);
-  printf("\n(?) >> ");
-  scanf("%d", optionInt);
-  free(_temp);
+void get_input(
+  lm_menu *menu,
+  bool include_name
+) {
+  // making sure the lib doesn't shit itself
+  int tmp = 0;
+
+  if (include_name) {
+    if (menu->submenu)
+      printf("%s", menu->name);
+    else
+      printf("%s v. %s", menu->name, menu->version);
+  }
+  putchar(10);
+
+  for (uint8_t i = 0; i < menu->options_l; i++)
+    printf("[%d] %s\n", i+1, menu->options[i]);
+  printf("[0] %s\n", menu->exit_t);
+  printf("\n[...] ");
+
+  scanf("%d", &tmp);
+  menu->last_selection = (uint8_t)tmp;
 }
 
-/* ------------------------- * DEALLOCATION * ------------------------- */
-void deallocMenu(Menu* menu) {
+void unmake_menu(
+  lm_menu *menu
+) {
   free(menu);
 }
 
-/* ------------------------- * STDOUT OPERATIONS * ------------------------- */
+void sep() {
+  char b[76];
+
+  memset(b, '=', 75);
+  b[75] = 0;
+
+  printf("%s\n", b);
+}
+
 void clear() {
   printf("\x1b[2J\x1b[H");
 }
-void sep() {
-  for (int i = 0; i < 75; i++) {
-    printf("=");
-  }
-  printf("\n");
-}
 
-/* ------------------------- * ERROR HANDLING * ------------------------- */
-void error(char* info) {
-  printf("\x1b[1;31merror:\x1b[0m\x1b[1m %s\x1b[0m\n", info);
-}
-void warning(char* info) {
-  printf("\x1b[1;33mwarning:\x1b[0m\x1b[1m %s\x1b[0m\n", info);
-}
-void inputErr(int *input) {
-  /*char _temp[50];
-  sprintf(_temp, "no option made for input %d", *input);
-  error(_temp);*/
-  printf("\x1b[1;31merror:\x1b[0m\x1b[1m no option made for input %d\x1b[0m\n", *input);
-}
-
-/* ------------------------- * OTHER * ------------------------- */
-void ignorePrev() {
+void ignore_previous_input() {
   char c;
   while ((c = getchar()) != '\n' && c != EOF);
 }
 
-/* ------------------------- * DONE! * ------------------------- */
+void error(
+  char *info,
+  ...
+) {
+  va_list args;
+  va_start(args, info);
 
-// use make
+  printf("\x1b[1;31merror:\x1b[0m\x1b[1m ");
+  vprintf(info, args);
+  printf("\x1b[0m\n");
+
+  va_end(args);
+}
+
+void warning(
+  char *info,
+  ...
+) {
+  va_list args;
+  va_start(args, info);
+
+  printf("\x1b[1;33mwarning:\x1b[0m\x1b[1m ");
+  vprintf(info, args);
+  printf("\x1b[0m\n");
+
+  va_end(args);
+}

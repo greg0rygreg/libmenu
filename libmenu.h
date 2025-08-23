@@ -1,74 +1,48 @@
 #ifndef LIBMENU_H
 #define LIBMENU_H
-#include <stdio.h>
+#include <stdint.h>
 #include <stdbool.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-//contains information about a menu
-typedef struct menu {
-  //menu name
-  char* name;
-  //menu version
-  char* version;
-  //menu options
-  char** options;
-  //number of menu options
-  long unsigned optionsN;
-  //menu exit text
-  char* exitText;
-  //is submenu?
-  bool isSubmenu;
-} Menu;
+typedef struct lm_menu {
+  char *name;
+  char *version;
+  char **options;
+  uint8_t options_l;
+  uint8_t last_selection;
+  char *exit_t;
+  bool submenu;
+} lm_menu;
 
-//menu configurator
-Menu* initMenu(char* name, char* version, char* options[], long unsigned optionsN, char* exitText, bool isSubmenu);
+lm_menu *make_menu(
+  char *name,
+  char *version,
+  char **options,
+  uint8_t options_l,
+  char *exit_t,
+  bool submenu
+);
 
-/*get a formatted string of the name and version of the menu
+void get_input(
+  lm_menu *menu,
+  bool include_name
+);
 
-`int includeVersion`: defines if you want to include `Menu->version`,
-useful for submenus
-*/
-char* getFormattedVersion(Menu* menu, bool includeVersion);
+void unmake_menu(
+  lm_menu *menu
+);
 
-/*print a menu, get user input and put it
-on `optionInt`
-`int printName`: if 1, print the name and version of the menu defined
-in `Menu->name` and `Menu->version` respectively
-
-else, don't print them
-
-`int includeVersion`: defines if you want to include `Menu->version`
-on the menu name header, useful for submenus that have set their version
-to an empty string
-*/
-void printAndGetInput(Menu* menu, int *optionInt, bool printName, bool includeVersion);
-
-//deallocates a menu, just a free()
-void deallocMenu(Menu* menu);
-
-//clear the screen for the next operation
-void clear();
-
-//seperate the screen by exactly 75 equal signs
 void sep();
+void clear();
+void ignore_previous_input();
 
-/*print an error incase of input invalidation or something
-else*/
-void error(char* info);
+void error(
+  char *info,
+  ...
+);
 
-/*print a warning incase something goes wrong and an error
-doesn't fit*/
-void warning(char* info);
-
-//print an input error
-void inputErr(int* input);
-
-//ignore previous input incase the next one is an fgets
-void ignorePrev();
-#ifdef __cplusplus
-}
-#endif
+void warning(
+  char *info,
+  ...
+);
 
 #endif // LIBMENU_H
