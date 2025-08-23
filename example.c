@@ -1,4 +1,4 @@
-#include "libmenuR.h"
+#include "libmenu.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,7 +6,7 @@
 
 int main() {
   lm_menu *main = make_menu(
-    "libmenu remake test application",
+    "libmenu 2.0.0 test application",
     "1.0.0",
   (char*[]){
     "submenu test",
