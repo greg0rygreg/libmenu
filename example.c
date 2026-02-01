@@ -33,7 +33,7 @@ int main() {
   true
   );
   if (!submenu) {
-    unmake_menu(main);
+    free(main);
     return 1;
   }
   bool b = false;
@@ -92,7 +92,7 @@ int main() {
       }
       case 3: {
         clear();
-        printf("%s v. %s\nmade by Theodore\nlicensed under the MIT license\n", main->name, main->version);
+        printf("%s v. %s\nmade by Greg\nlicensed under the MIT license\n", main->name, main->version);
         sep();
         break;
       }
@@ -109,10 +109,10 @@ int main() {
       }
     }
   }
-  unmake_menu(main);
-  unmake_menu(submenu);
+  free(main);
+  free(submenu);
 
   return 0;
 }
 
-// gcc -o example example.c libmenuR.c
+// gcc -o example example.c libmenu.c

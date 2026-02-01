@@ -27,10 +27,6 @@ void get_input(
   bool include_name
 );
 
-void unmake_menu(
-  lm_menu *menu
-);
-
 void sep();
 void clear();
 void ignore_previous_input();

@@ -14,14 +14,14 @@ lm_menu *make_menu(
 ) {
   lm_menu *ret = (lm_menu*)malloc(sizeof(lm_menu));
   if (!ret) return NULL;
-  if (!options || options_l == 0) return NULL;
-  if (!exit_t) {
+  if (!options || options_l < 1) return NULL;
+  /*if (!exit_t) {
     if (!submenu)
       exit_t = "exit";
     else
       exit_t = "go back";
-  }
-
+  }*/
+  exit_t = !exit_t? (!submenu? "exit":"go back"):exit_t;
   ret->name = name;
   ret->version = version;
   ret->options = options;
@@ -55,12 +55,6 @@ void get_input(
 
   scanf("%d", &tmp);
   menu->last_selection = (uint8_t)tmp;
-}
-
-void unmake_menu(
-  lm_menu *menu
-) {
-  free(menu);
 }
 
 void sep() {
