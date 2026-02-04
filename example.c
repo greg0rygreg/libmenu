@@ -92,7 +92,7 @@ int main() {
       }
       case 3: {
         clear();
-        printf("%s v. %s\nmade by Greg\nlicensed under the MIT license\n", main->name, main->version);
+        printf("%s v. %s\nmade by greg\nlicensed under the MIT license\n", main->name, main->version);
         sep();
         break;
       }
