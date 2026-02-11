@@ -8,14 +8,14 @@ int main() {
   lm_menu *main = make_menu(
     "libmenu 2.0.0 test application",
     "1.0.0",
-  (char*[]){
-    "submenu test",
-    "pseudo-random number (1-100)",
-    "info"
-  },
-  3,
-  "exit",
-  false
+    (char*[]){
+      "submenu test",
+      "pseudo-random number (1-100)",
+      "info"
+    },
+    3,
+    NULL,
+    false
   );
   if (!main)
     return 1;
@@ -23,14 +23,14 @@ int main() {
   lm_menu *submenu = make_menu(
     "submenu test options:",
     NULL,
-  (char*[]){
-    "say hi",
-    "say hello",
-    "say hey"
-  },
-  3,
-  "go back",
-  true
+    (char*[]){
+      "say hi",
+      "say hello",
+      "say hey"
+    },
+    3,
+    NULL,
+    true
   );
   if (!submenu) {
     free(main);
