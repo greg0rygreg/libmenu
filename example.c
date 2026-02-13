@@ -5,8 +5,8 @@
 #include <time.h>
 
 int main() {
-  lm_menu *main = make_menu(
-    "libmenu 2.0.0 test application",
+  lm_menu *main = lm_domenu(
+    "libmenu test application",
     "1.0.0",
     (char*[]){
       "submenu test",
@@ -20,7 +20,7 @@ int main() {
   if (!main)
     return 1;
 
-  lm_menu *submenu = make_menu(
+  lm_menu *submenu = lm_domenu(
     "submenu test options:",
     NULL,
     (char*[]){
@@ -39,42 +39,42 @@ int main() {
   bool b = false;
   bool b2 = false;
   
-  clear();
+  lm_clear();
   while (!b) {
-    get_input(main, true);
+    lm_input(main, true);
     switch (main->last_selection) {
       case 1: {
-        clear();
+        lm_clear();
         while (!b2) {
-          get_input(submenu, true);
+          lm_input(submenu, true);
           switch (submenu->last_selection) {
             case 1: {
-              clear();
+              lm_clear();
               printf("hi\n");
-              sep();
+              lm_sep();
               break;
             }
             case 2: {
-              clear();
+              lm_clear();
               printf("hello\n");
-              sep();
+              lm_sep();
               break;
             }
             case 3: {
-              clear();
+              lm_clear();
               printf("hey\n");
-              sep();
+              lm_sep();
               break;
             }
             case 0: {
-              clear();
+              lm_clear();
               b2++;
               break;
             }
             default: {
-              clear();
-              error("no option made for selection %d", submenu->last_selection);
-              sep();
+              lm_clear();
+              lm_error("no option made for selection %d", submenu->last_selection);
+              lm_sep();
               break;
             }
           }
@@ -83,28 +83,28 @@ int main() {
         break;
       }
       case 2: {
-        clear();
+        lm_clear();
         long c = clock();
         srand(c);
         printf("your pseudo-random number is %d (clock() -> %ld)\n", rand() % 100 + 1, c);
-        sep();
+        lm_sep();
         break;
       }
       case 3: {
-        clear();
+        lm_clear();
         printf("%s v. %s\nmade by greg\nlicensed under the MIT license\n", main->name, main->version);
-        sep();
+        lm_sep();
         break;
       }
       case 0: {
-        clear();
+        lm_clear();
         b++;
         break;
       }
       default: {
-        clear();
-        error("no option made for selection %d", main->last_selection);
-        sep();
+        lm_clear();
+        lm_error("no option made for selection %d", main->last_selection);
+        lm_sep();
         break;
       }
     }

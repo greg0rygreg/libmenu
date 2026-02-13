@@ -4,39 +4,39 @@
 #include <stdbool.h>
 
 typedef struct lm_menu {
+  char **options;
   char *name;
   char *version;
-  char **options;
-  uint8_t options_l;
-  uint8_t last_selection;
   char *exit_t;
   bool submenu;
+  int options_l;
+  int last_selection;
 } lm_menu;
 
-lm_menu *make_menu(
+lm_menu *lm_domenu(
   char *name,
   char *version,
   char **options,
-  uint8_t options_l,
+  int options_l,
   char *exit_t,
   bool submenu
 );
 
-void get_input(
+void lm_input(
   lm_menu *menu,
   bool include_name
 );
 
-void sep();
-void clear();
-void ignore_previous_input();
+void lm_sep();
+void lm_clear();
+void lm_noprevinput();
 
-void error(
+void lm_error(
   char *info,
   ...
 );
 
-void warning(
+void lm_warn(
   char *info,
   ...
 );

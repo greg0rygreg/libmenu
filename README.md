@@ -1,6 +1,9 @@
-# libmenu-2.0.0
-I remade libmenu to be easier to read without much bloat in the source
+# libmenu
+simple & effective CLI menu library
 
 ## TODO
-- [x] add documentation to [`libmenu.h`](libmenu.h) (pretty sure the names of the methods are very self-explanatory)
-- [ ] make sure not to add useless stuff
+- [X] add documentation to [`libmenu.h`](libmenu.h) (pretty sure the names of the methods are very self-explanatory)
+- [X] make sure not to add useless stuff
+- [ ] document functions
+- [ ] make sure to add useful stuff
+- [ ] celebrate 100th commit
