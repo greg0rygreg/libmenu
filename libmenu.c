@@ -12,9 +12,9 @@ lm_menu *lm_domenu(
   char *exit_t,
   bool submenu
 ) {
-  lm_menu *ret = (lm_menu*)malloc(sizeof(lm_menu));
-  if (!ret) return NULL;
   if (!options || options_l < 1) return NULL;
+  lm_menu *ret = malloc(sizeof(lm_menu));
+  if (!ret) return NULL;
   /*if (!exit_t) {
     if (!submenu)
       exit_t = "exit";
