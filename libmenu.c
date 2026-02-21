@@ -67,7 +67,12 @@ void lm_sep() {
 }
 
 void lm_clear() {
-  printf("\x1b[2J\x1b[H");
+  //printf("\x1b[2J\x1b[H");
+  #ifdef _WIN32
+    system("cls");
+  #else
+    system("clear");
+  #endif
 }
 
 void lm_noprevinput() {
