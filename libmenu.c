@@ -57,7 +57,7 @@ void lm_input(
   menu->last_selection = tmp;
 }
 
-// TODO add options
+// TODO add settings
 // use structs to make an "lm_option" struct
 // and enums for option types (maybe)
 
