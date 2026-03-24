@@ -42,12 +42,12 @@ int main() {
   lm_clear();
   while (!b) {
     lm_input(main, true);
-    switch (main->last_selection) {
+    switch (main->last) {
       case 1: {
         lm_clear();
         while (!b2) {
           lm_input(submenu, true);
-          switch (submenu->last_selection) {
+          switch (submenu->last) {
             case 1: {
               lm_clear();
               printf("hi\n");
@@ -73,7 +73,7 @@ int main() {
             }
             default: {
               lm_clear();
-              lm_error("no option made for selection %d", submenu->last_selection);
+              lm_error("no option made for selection %d", submenu->last);
               lm_sep();
               break;
             }
@@ -103,7 +103,7 @@ int main() {
       }
       default: {
         lm_clear();
-        lm_error("no option made for selection %d", main->last_selection);
+        lm_error("no option made for selection %d", main->last);
         lm_sep();
         break;
       }
