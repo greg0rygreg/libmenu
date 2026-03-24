@@ -26,7 +26,7 @@ lm_menu *lm_domenu(
   ret->version = version;
   ret->options = options;
   ret->options_l = options_l;
-  ret->last_selection = 0;
+  ret->last = 0;
   ret->exit_t = exit_t;
   ret->submenu = submenu;
 
@@ -54,7 +54,7 @@ void lm_input(
   printf("\n[...] ");
 
   scanf("%d", &tmp);
-  menu->last_selection = tmp;
+  menu->last = tmp;
 }
 
 // TODO add settings
