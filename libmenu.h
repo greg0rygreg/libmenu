@@ -8,9 +8,9 @@ typedef struct lm_menu {
   char *name;
   char *version;
   char *exit_t;
-  bool submenu;
-  int options_l;
   int last;
+  int options_l;
+  bool submenu;
 } lm_menu;
 
 // create a menu
@@ -24,7 +24,7 @@ lm_menu *lm_domenu(
 );
 
 // get input from user,
-// outputting it to `menu->last_selection`
+// outputting it to `menu->last`
 void lm_input(
   lm_menu *menu,
   bool include_name

@@ -57,12 +57,6 @@ void lm_input(
   menu->last = tmp;
 }
 
-// TODO add settings
-// use structs to make an "lm_option" struct
-// and enums for option types (maybe)
-// 3/21/26 menu->options[op][ch] = (var? 'X':' '); lm_input(...);
-
-
 void lm_sep() {
   char b[76];
 
