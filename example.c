@@ -5,12 +5,13 @@
 #include <time.h>
 
 int main() {
+  char prn[] = "pseudo-random number (1-100, last number's parity: ?)";
   lm_menu *main = lm_domenu(
     "libmenu test application",
     "1.0.0",
     (char*[]){
       "submenu test",
-      "pseudo-random number (1-100)",
+      prn,
       "info"
     },
     3,
@@ -36,11 +37,14 @@ int main() {
     free(main);
     return 1;
   }
+
   bool b = false;
   bool b2 = false;
+  int lastnum = 0;
   
   lm_clear();
   while (!b) {
+    prn[51] = lastnum % 2 == 0? 'E':'O';
     lm_input(main, true);
     switch (main->last) {
       case 1: {
@@ -86,13 +90,14 @@ int main() {
         lm_clear();
         long c = clock();
         srand(c);
-        printf("your pseudo-random number is %d (clock() -> %ld)\n", rand() % 100 + 1, c);
+        lastnum = rand() % 100 + 1;
+        printf("your pseudo-random number is %d (clock() -> %ld)\n", lastnum, c);
         lm_sep();
         break;
       }
       case 3: {
         lm_clear();
-        printf("%s v. %s\nmade by greg\nlicensed under the MIT license\n", main->name, main->version);
+        printf("%s v. %s\nmade by Gregory Thedore Greg\nlicensed under the MIT license\n", main->name, main->version);
         lm_sep();
         break;
       }
