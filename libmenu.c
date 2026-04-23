@@ -7,7 +7,7 @@
 lm_menu *lm_domenu(
   char *name,
   char *version,
-  char **options,
+  lm_option *options,
   int options_l,
   char *exit_t,
   bool submenu
@@ -37,8 +37,11 @@ void lm_input(
   lm_menu *menu,
   bool include_name
 ) {
-  // making sure the lib doesn't shit itself
-  int tmp = 0;
+  // 4/23/26
+  // if your menu prints "no option made for input -1",
+  // this might be why. I didn't want libmenu to quit a
+  // menu as you enter a character instead of an integer
+  int tmp = -1;
 
   if (include_name) {
     if (menu->submenu)
@@ -48,8 +51,13 @@ void lm_input(
     putchar(10);
   }
 
-  for (int i = 0; i < menu->options_l; i++)
-    printf("[%d] %s\n", i+1, menu->options[i]);
+  for (int i = 0; i < menu->options_l; i++) {
+    lm_option cur = menu->options[i];
+    if (cur.istoggle == 0) 
+      printf("[%d] %s\n", i+1, cur.key);
+    else
+      printf("[%d] %s [%c]\n", i+1, cur.key, *cur.togglevar? 'X':' ');
+  }
   printf("[0] %s\n", menu->exit_t);
   printf("\n[...] ");
 

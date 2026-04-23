@@ -3,8 +3,14 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+typedef struct {
+  char* key;
+  int istoggle;
+  int *togglevar;
+} lm_option;
+
 typedef struct lm_menu {
-  char **options;
+  lm_option *options;
   char *name;
   char *version;
   char *exit_t;
@@ -17,7 +23,7 @@ typedef struct lm_menu {
 lm_menu *lm_domenu(
   char *name,
   char *version,
-  char **options,
+  lm_option *options,
   int options_l,
   char *exit_t,
   bool submenu

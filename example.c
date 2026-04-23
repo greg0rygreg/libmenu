@@ -5,16 +5,17 @@
 #include <time.h>
 
 int main() {
-  char prn[] = "pseudo-random number (1-100, last number's parity: ?)";
+  int toggletest = 0;
   lm_menu *main = lm_domenu(
     "libmenu test application",
-    "1.0.0",
-    (char*[]){
-      "submenu test",
-      prn,
-      "info"
+    "1.1.0",
+    (lm_option[]){
+      {"submenu test", 0, NULL},
+      {"pseudo-random number test (1-100)", 0, NULL},
+      {"print toggle", 0, NULL},
+      {"info", 0, NULL}
     },
-    3,
+    4,
     NULL,
     false
   );
@@ -24,12 +25,13 @@ int main() {
   lm_menu *submenu = lm_domenu(
     "submenu test options:",
     NULL,
-    (char*[]){
-      "say hi",
-      "say hello",
-      "say hey"
+    (lm_option[]){
+      {"say hi", 0, NULL},
+      {"say hello", 0, NULL},
+      {"say hey", 0, NULL},
+      {"toggle the toggle", 1, &toggletest}
     },
-    3,
+    4,
     NULL,
     true
   );
@@ -40,11 +42,9 @@ int main() {
 
   bool b = false;
   bool b2 = false;
-  int lastnum = 0;
   
   lm_clear();
   while (!b) {
-    prn[51] = lastnum % 2 == 0? 'E':'O';
     lm_input(main, true);
     switch (main->last) {
       case 1: {
@@ -70,6 +70,11 @@ int main() {
               lm_sep();
               break;
             }
+            case 4: {
+              lm_clear();
+              toggletest = !toggletest;
+              break;
+            }
             case 0: {
               lm_clear();
               b2++;
@@ -90,12 +95,17 @@ int main() {
         lm_clear();
         long c = clock();
         srand(c);
-        lastnum = rand() % 100 + 1;
-        printf("your pseudo-random number is %d (clock() -> %ld)\n", lastnum, c);
+        printf("your pseudo-random number is %d (clock() -> %ld)\n", rand() % 100 + 1, c);
         lm_sep();
         break;
       }
       case 3: {
+        lm_clear();
+        printf("the toggle is %s\n", toggletest? "ON":"OFF");
+        lm_sep();
+        break;
+      }
+      case 4: {
         lm_clear();
         printf("%s v. %s\nmade by Gregory Thedore Greg\nlicensed under the MIT license\n", main->name, main->version);
         lm_sep();
