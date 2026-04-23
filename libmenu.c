@@ -40,7 +40,7 @@ void lm_input(
   // 4/23/26
   // if your menu prints "no option made for input -1",
   // this might be why. I didn't want libmenu to quit a
-  // menu as you enter a character instead of an integer
+  // menu when you enter a character instead of an integer
   int tmp = -1;
 
   if (include_name) {
